@@ -22,7 +22,7 @@ export const services: Service[] = [
     shortDescription:
       'Manisa ve tüm ilçelerinde eşyalarınız özenli paketleme ve deneyimli ekiple güvenle yeni adresinize taşınır.',
     description:
-      'Evinizi taşımak stresli ve zahmetli bir süreç olabilir. Enes Nakliyat olarak yılların deneyimiyle, taşınma sürecinizin başından sonuna kadar tüm detaylarıyla ilgileniyor; ambalajlama, yükleme, taşıma ve yerleştirme adımlarının her birini özenle yönetiyoruz.\n\nEşyalarınızı kendi eşyalarımız gibi özenle taşıyan profesyonel ekibimiz, mobilyalarınızın demontaj ve montaj işlemlerini titizlikle gerçekleştirir, hassas eşyalarınızı özel ambalaj malzemeleriyle sararak güvence altına alır. Taşıma öncesinde ücretsiz keşif yaparak size net ve şeffaf bir fiyat teklifi sunuyoruz.',
+      'Evinizi taşımak stresli ve zahmetli bir süreç olabilir. Manisa Enes Gülal Nakliyat olarak yılların deneyimiyle, taşınma sürecinizin başından sonuna kadar tüm detaylarıyla ilgileniyor; ambalajlama, yükleme, taşıma ve yerleştirme adımlarının her birini özenle yönetiyoruz.\n\nEşyalarınızı kendi eşyalarımız gibi özenle taşıyan profesyonel ekibimiz, mobilyalarınızın demontaj ve montaj işlemlerini titizlikle gerçekleştirir, hassas eşyalarınızı özel ambalaj malzemeleriyle sararak güvence altına alır. Taşıma öncesinde ücretsiz keşif yaparak size net ve şeffaf bir fiyat teklifi sunuyoruz.',
     faqs: [
       {
         question: 'Evden eve nakliyat ne kadar sürede tamamlanır?',
@@ -48,7 +48,7 @@ export const services: Service[] = [
     shortDescription:
       'Yüksek katlı binalarda eşyalarınızı merdiven kullanmadan, hızlı ve hasarsız şekilde taşıyoruz.',
     description:
-      'Özellikle yüksek katlı binalarda taşınma süreci zorlu ve zaman alıcı olabilir. Enes Nakliyat olarak asansörlü nakliyat hizmetimizle bu süreci kolaylaştırıyoruz: özel asansör sistemlerimiz sayesinde eşyalarınız binanın dış cephesinden doğrudan ve güvenle taşınır.\n\nBu yöntem merdivenlerden taşıma sırasında oluşabilecek çizilme, kırılma ve düşme risklerini ortadan kaldırırken, taşınma sürecini de büyük ölçüde hızlandırır. Modern ve yüksek taşıma kapasiteli asansör sistemlerimizle büyük ve ağır eşyalarınızı bile kolayca taşıyoruz.',
+      'Özellikle yüksek katlı binalarda taşınma süreci zorlu ve zaman alıcı olabilir. Manisa Enes Gülal Nakliyat olarak asansörlü nakliyat hizmetimizle bu süreci kolaylaştırıyoruz: özel asansör sistemlerimiz sayesinde eşyalarınız binanın dış cephesinden doğrudan ve güvenle taşınır.\n\nBu yöntem merdivenlerden taşıma sırasında oluşabilecek çizilme, kırılma ve düşme risklerini ortadan kaldırırken, taşınma sürecini de büyük ölçüde hızlandırır. Modern ve yüksek taşıma kapasiteli asansör sistemlerimizle büyük ve ağır eşyalarınızı bile kolayca taşıyoruz.',
     faqs: [
       {
         question: 'Asansörlü nakliyat hangi durumlarda gereklidir?',

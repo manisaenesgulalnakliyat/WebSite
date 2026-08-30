@@ -1,6 +1,6 @@
 export const business = {
-  name: 'Enes Nakliyat',
-  legalName: 'Enes Nakliyat Lojistik',
+  name: 'Manisa Enes Gülal Nakliyat',
+  legalName: 'Manisa Enes Gülal Nakliyat',
   phone: '0538 398 54 78',
   whatsappNumber: '905383985478',
   email: 'info@manisaenesevdenevenakliyat.com',

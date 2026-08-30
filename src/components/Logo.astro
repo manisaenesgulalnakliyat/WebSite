@@ -1,19 +1,22 @@
 ---
+import { business } from '../data/business';
+
 interface Props {
   variant?: 'light' | 'dark';
 }
 
 const { variant = 'light' } = Astro.props;
+const logoAlt = `${business.name} - Manisa Evden Eve Nakliyat`;
 ---
 
 {
   variant === 'dark' ? (
     <a href="/" class="inline-flex items-center rounded-lg bg-ivory-50 px-3 py-2">
-      <img src="/logo.webp" alt="Enes Nakliyat - Manisa Evden Eve Nakliyat" class="h-16 w-auto" width="560" height="197" />
+      <img src="/logo.webp" alt={logoAlt} class="h-16 w-auto" width="560" height="197" />
     </a>
   ) : (
     <a href="/" class="inline-flex items-center">
-      <img src="/logo.webp" alt="Enes Nakliyat - Manisa Evden Eve Nakliyat" class="h-24 w-auto" width="560" height="197" />
+      <img src="/logo.webp" alt={logoAlt} class="h-24 w-auto" width="560" height="197" />
     </a>
   )
 }
