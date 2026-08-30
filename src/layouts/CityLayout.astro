@@ -1,0 +1,33 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import type { City } from '../data/cities';
+
+interface Props {
+  city: City;
+}
+
+const { city } = Astro.props;
+
+const breadcrumbJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Anasayfa', item: new URL('/', Astro.site) },
+    { '@type': 'ListItem', position: 2, name: 'Bölgeler', item: new URL('/bolgeler', Astro.site) },
+    {
+      '@type': 'ListItem',
+      position: 3,
+      name: `${city.name} Nakliyat`,
+      item: new URL(`/bolgeler/${city.slug}`, Astro.site),
+    },
+  ],
+};
+---
+
+<BaseLayout
+  title={`${city.name} Nakliyat`}
+  description={`${city.name} ve tüm ilçelerinde evden eve nakliyat, ofis taşımacılığı ve eşya depolama hizmetleri.`}
+  jsonLd={[breadcrumbJsonLd]}
+>
+  <slot />
+</BaseLayout>

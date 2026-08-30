@@ -1,0 +1,19 @@
+---
+interface Props {
+  variant?: 'light' | 'dark';
+}
+
+const { variant = 'light' } = Astro.props;
+---
+
+{
+  variant === 'dark' ? (
+    <a href="/" class="inline-flex items-center rounded-lg bg-ivory-50 px-3 py-2">
+      <img src="/logo.webp" alt="Enes Nakliyat - Manisa Evden Eve Nakliyat" class="h-16 w-auto" width="560" height="197" />
+    </a>
+  ) : (
+    <a href="/" class="inline-flex items-center">
+      <img src="/logo.webp" alt="Enes Nakliyat - Manisa Evden Eve Nakliyat" class="h-24 w-auto" width="560" height="197" />
+    </a>
+  )
+}

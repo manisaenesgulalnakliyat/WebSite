@@ -1,0 +1,109 @@
+---
+import Logo from './Logo.astro';
+import UiIcon from './UiIcon.astro';
+import { business } from '../data/business';
+import { services } from '../data/services';
+---
+
+<header class="sticky top-0 z-40 border-b border-ink-950/10 bg-ivory-50/95 backdrop-blur">
+  <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
+    <Logo variant="light" />
+
+    <nav class="hidden items-center gap-7 text-sm font-medium text-ink-900 md:flex">
+      <div class="group relative">
+        <button class="flex items-center gap-1 py-2">Hizmetler</button>
+        <div
+          class="invisible absolute left-0 top-full flex w-60 flex-col rounded-lg border border-ink-950/10 bg-white py-2 opacity-0 shadow-xl transition group-hover:visible group-hover:opacity-100"
+        >
+          {
+            services.map((service) => (
+              <a href={`/hizmetler/${service.slug}`} class="px-4 py-2 hover:bg-ivory-100 hover:text-flame-600">
+                {service.title}
+              </a>
+            ))
+          }
+        </div>
+      </div>
+      <a href="/bolgeler" class="hover:text-flame-600">Bölgeler</a>
+      <a href="/yorumlar" class="hover:text-flame-600">Yorumlar</a>
+      <a href="/hakkimizda" class="hover:text-flame-600">Hakkımızda</a>
+      <a href="/iletisim" class="hover:text-flame-600">İletişim</a>
+    </nav>
+
+    <div class="flex items-center gap-3">
+      <a
+        href={`tel:${business.phone.replace(/\s/g, '')}`}
+        class="hidden items-center gap-1.5 text-sm font-semibold text-ink-900 hover:text-flame-600 sm:flex"
+      >
+        <UiIcon name="phone" class="h-4 w-4 text-flame-600" />
+        {business.phone}
+      </a>
+      <a
+        href="/teklif-al"
+        class="flex items-center gap-1.5 whitespace-nowrap rounded-full bg-ink-950 px-4 py-2.5 text-sm font-semibold text-flame-400 transition hover:bg-ink-900 sm:px-5"
+      >
+        <span class="hidden sm:inline">Ücretsiz </span>Teklif Al
+        <UiIcon name="arrow-right" class="h-4 w-4" />
+      </a>
+
+      <button
+        id="mobile-menu-toggle"
+        type="button"
+        class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-ink-950/15 text-ink-950 md:hidden"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        aria-label="Menüyü aç"
+      >
+        <UiIcon name="menu" class="menu-icon-open h-5 w-5" />
+        <UiIcon name="close" class="menu-icon-close hidden h-5 w-5" />
+      </button>
+    </div>
+  </div>
+
+  <nav id="mobile-menu" class="hidden border-t border-ink-950/10 bg-white md:hidden">
+    <div class="flex flex-col px-4 py-3 text-sm font-medium text-ink-900">
+      <a href="/hizmetler" class="rounded-lg px-2 py-2.5 hover:bg-ivory-100 hover:text-flame-600">Hizmetler</a>
+      <a href="/bolgeler" class="rounded-lg px-2 py-2.5 hover:bg-ivory-100 hover:text-flame-600">Bölgeler</a>
+      <a href="/yorumlar" class="rounded-lg px-2 py-2.5 hover:bg-ivory-100 hover:text-flame-600">Yorumlar</a>
+      <a href="/hakkimizda" class="rounded-lg px-2 py-2.5 hover:bg-ivory-100 hover:text-flame-600">Hakkımızda</a>
+      <a href="/iletisim" class="rounded-lg px-2 py-2.5 hover:bg-ivory-100 hover:text-flame-600">İletişim</a>
+      <a
+        href={`tel:${business.phone.replace(/\s/g, '')}`}
+        class="mt-1 flex items-center gap-1.5 rounded-lg px-2 py-2.5 font-semibold text-flame-600"
+      >
+        <UiIcon name="phone" class="h-4 w-4" />
+        {business.phone}
+      </a>
+    </div>
+  </nav>
+</header>
+
+<script>
+  const toggle = document.getElementById('mobile-menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  const openIcon = toggle?.querySelector('.menu-icon-open');
+  const closeIcon = toggle?.querySelector('.menu-icon-close');
+
+  function closeMenu() {
+    menu?.classList.add('hidden');
+    toggle?.setAttribute('aria-expanded', 'false');
+    openIcon?.classList.remove('hidden');
+    closeIcon?.classList.add('hidden');
+  }
+
+  function openMenu() {
+    menu?.classList.remove('hidden');
+    toggle?.setAttribute('aria-expanded', 'true');
+    openIcon?.classList.add('hidden');
+    closeIcon?.classList.remove('hidden');
+  }
+
+  toggle?.addEventListener('click', () => {
+    const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+    isOpen ? closeMenu() : openMenu();
+  });
+
+  menu?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', closeMenu);
+  });
+</script>

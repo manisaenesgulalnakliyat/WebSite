@@ -1,0 +1,41 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import MapEmbed from '../components/MapEmbed.astro';
+import CTAForm from '../components/CTAForm.astro';
+import UiIcon from '../components/UiIcon.astro';
+import { business } from '../data/business';
+---
+
+<BaseLayout title="İletişim" description={`${business.name} ile iletişime geçin. Telefon: ${business.phone}`}>
+  <section class="mx-auto grid max-w-6xl gap-10 px-4 py-16 lg:grid-cols-2">
+    <div>
+      <h1 class="text-3xl font-bold text-ink-950">İletişim</h1>
+      <div class="mt-6 space-y-2 text-ink-900/80">
+        <p><strong class="text-ink-950">Adres:</strong> {business.address.streetAddress}, {business.address.addressLocality}</p>
+        <p>
+          <strong class="text-ink-950">Telefon:</strong>{' '}
+          <a href={`tel:${business.phone.replace(/\s/g, '')}`} class="inline-flex items-center gap-1.5 text-flame-600 hover:underline">
+            <UiIcon name="phone" class="h-4 w-4" />
+            {business.phone}
+          </a>
+        </p>
+        <p>
+          <strong class="text-ink-950">E-posta:</strong>{' '}
+          <a href={`mailto:${business.email}`} class="text-flame-600 hover:underline">
+            {business.email}
+          </a>
+        </p>
+      </div>
+      <div class="mt-8">
+        <MapEmbed />
+      </div>
+    </div>
+
+    <div>
+      <h2 class="text-xl font-bold text-ink-950">Teklif İsteyin</h2>
+      <div class="mt-4">
+        <CTAForm />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

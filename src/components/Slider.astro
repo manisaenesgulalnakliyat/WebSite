@@ -1,0 +1,151 @@
+---
+import { slides } from '../data/slides';
+---
+
+<div id="hero-slider" class="w-full">
+  <div class="slider-track relative aspect-[1600/656] w-full cursor-grab touch-pan-y select-none overflow-hidden rounded-2xl ring-1 ring-white/15 shadow-2xl shadow-black/40 active:cursor-grabbing">
+    {
+      slides.map((slide, index) => (
+        <div class="slide absolute inset-0 transition-opacity duration-700 ease-in-out" data-index={index} style={`opacity: ${index === 0 ? 1 : 0}`}>
+          <img
+            src={slide.src}
+            alt={slide.alt}
+            class="h-full w-full object-cover"
+            loading={index === 0 ? 'eager' : 'lazy'}
+            fetchpriority={index === 0 ? 'high' : 'auto'}
+            width="1600"
+            height="656"
+            draggable="false"
+          />
+        </div>
+      ))
+    }
+
+    <button
+      type="button"
+      class="slider-prev absolute left-4 top-1/2 z-10 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/95 text-ink-950 shadow-lg transition hover:scale-105 hover:bg-white sm:flex"
+      aria-label="Önceki slayt"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+        <path d="M15 18l-6-6 6-6" />
+      </svg>
+    </button>
+    <button
+      type="button"
+      class="slider-next absolute right-4 top-1/2 z-10 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/95 text-ink-950 shadow-lg transition hover:scale-105 hover:bg-white sm:flex"
+      aria-label="Sonraki slayt"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
+        <path d="M9 18l6-6-6-6" />
+      </svg>
+    </button>
+  </div>
+
+  <div class="mt-5 flex items-center justify-center gap-1">
+    {
+      slides.map((_, index) => (
+        <button
+          type="button"
+          class="slider-dot flex h-6 w-8 shrink-0 items-center justify-center"
+          data-index={index}
+          data-active={index === 0 ? 'true' : 'false'}
+          aria-label={`${index + 1}. slayta git`}
+        >
+          <span class="dot-visual h-2 w-2 rounded-full bg-white/25 transition-all" />
+        </button>
+      ))
+    }
+  </div>
+</div>
+
+<style>
+  .dot-visual {
+    width: 0.5rem;
+  }
+  .slider-dot[data-active='true'] .dot-visual {
+    width: 1.75rem;
+    background-color: var(--color-flame-500);
+  }
+</style>
+
+<script>
+  const root = document.getElementById('hero-slider');
+
+  if (root) {
+    const track = root.querySelector<HTMLElement>('.slider-track');
+    const slideEls = Array.from(root.querySelectorAll<HTMLElement>('.slide'));
+    const dots = Array.from(root.querySelectorAll<HTMLElement>('.slider-dot'));
+    const prevBtn = root.querySelector<HTMLButtonElement>('.slider-prev');
+    const nextBtn = root.querySelector<HTMLButtonElement>('.slider-next');
+
+    let current = 0;
+    let timer: ReturnType<typeof setInterval> | undefined;
+
+    function show(index: number) {
+      current = (index + slideEls.length) % slideEls.length;
+      slideEls.forEach((el, i) => {
+        el.style.opacity = i === current ? '1' : '0';
+      });
+      dots.forEach((dot, i) => {
+        dot.dataset.active = i === current ? 'true' : 'false';
+      });
+    }
+
+    function next() {
+      show(current + 1);
+    }
+
+    function prev() {
+      show(current - 1);
+    }
+
+    function startAutoplay() {
+      stopAutoplay();
+      timer = setInterval(next, 5000);
+    }
+
+    function stopAutoplay() {
+      if (timer) clearInterval(timer);
+    }
+
+    prevBtn?.addEventListener('click', () => {
+      prev();
+      startAutoplay();
+    });
+    nextBtn?.addEventListener('click', () => {
+      next();
+      startAutoplay();
+    });
+    dots.forEach((dot, i) => {
+      dot.addEventListener('click', () => {
+        show(i);
+        startAutoplay();
+      });
+    });
+
+    root.addEventListener('mouseenter', stopAutoplay);
+    root.addEventListener('mouseleave', startAutoplay);
+
+    let dragStartX = 0;
+    let dragging = false;
+
+    track?.addEventListener('pointerdown', (e) => {
+      dragging = true;
+      dragStartX = e.clientX;
+    });
+    track?.addEventListener('pointerup', (e) => {
+      if (!dragging) return;
+      dragging = false;
+      const delta = e.clientX - dragStartX;
+      if (Math.abs(delta) > 40) {
+        delta > 0 ? prev() : next();
+        startAutoplay();
+      }
+    });
+    track?.addEventListener('pointerleave', () => {
+      dragging = false;
+    });
+
+    startAutoplay();
+  }
+</script>

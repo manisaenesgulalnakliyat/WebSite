@@ -1,0 +1,118 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/Icon.astro';
+import UiIcon from '../components/UiIcon.astro';
+import { getServiceBySlug } from '../data/services';
+import { business } from '../data/business';
+
+const featuredServices = ['evden-eve-nakliyat', 'ofis-tasimaciligi', 'esya-depolama', 'asansorlu-nakliyat']
+  .map((slug) => getServiceBySlug(slug))
+  .filter((service) => service !== undefined);
+
+const whyUs = [
+  {
+    title: 'Deneyim ve Uzmanlık',
+    text: 'Taşımacılık sektöründeki birikimimizle, sürecin her aşamasını titizlikle planlıyor ve yönetiyoruz.',
+  },
+  {
+    title: 'Müşteri Memnuniyeti',
+    text: 'Her taşınma sürecini kendi taşınmamız gibi özenle yönetiyor, ihtiyaç ve beklentilerinizi en iyi şekilde karşılamayı hedefliyoruz.',
+  },
+  {
+    title: 'Güvenilirlik',
+    text: 'Tüm taşımacılık işlemlerimiz sigorta güvencesi altında gerçekleştirilir, eşyalarınız güvende.',
+  },
+  {
+    title: 'Teknolojik Altyapı',
+    text: 'Modern araç filomuz ve asansörlü taşıma sistemlerimizle, eşyalarınızı güvenli ve hızlı bir şekilde taşıyoruz.',
+  },
+];
+---
+
+<BaseLayout
+  title="Hakkımızda"
+  description={`${business.name} olarak Manisa'da güvenilir ve profesyonel taşımacılık hizmetleri sunuyoruz. Misyonumuz, vizyonumuz ve neden bizi tercih etmeniz gerektiği hakkında bilgi alın.`}
+>
+  <section class="mx-auto max-w-4xl px-4 py-16">
+    <h1 class="text-3xl font-bold text-ink-950 sm:text-4xl">Hakkımızda</h1>
+    <p class="mt-4 text-lg text-ink-900/70">
+      {business.name} olarak, müşterilerimize güvenilir ve profesyonel taşımacılık hizmetleri sunmaktayız.
+    </p>
+
+    <div class="mt-10 grid gap-6 sm:grid-cols-2">
+      <div class="rounded-2xl border border-ink-950/10 bg-white p-6 shadow-sm">
+        <h2 class="font-semibold text-ink-950">Misyonumuz</h2>
+        <p class="mt-2 text-sm leading-relaxed text-ink-900/70">
+          Müşterilerimize en kaliteli taşımacılık hizmetini sunarak, eşyalarının güvenli ve sorunsuz bir şekilde
+          taşınmasını sağlamak. Yenilikçi çözümler ve profesyonel ekibimizle, taşınma sürecini stressiz ve kolay bir
+          hale getirmeyi amaçlıyoruz.
+        </p>
+      </div>
+      <div class="rounded-2xl border border-ink-950/10 bg-white p-6 shadow-sm">
+        <h2 class="font-semibold text-ink-950">Vizyonumuz</h2>
+        <p class="mt-2 text-sm leading-relaxed text-ink-900/70">
+          Taşımacılık sektöründe sürekli gelişen teknolojileri ve yöntemleri takip ederek, hizmet kalitemizi sürekli
+          olarak artırmak. Müşterilerimizin ihtiyaçlarına en iyi şekilde cevap vererek, sektörde lider bir marka
+          olmak.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-ivory-100 py-16">
+    <div class="mx-auto max-w-4xl px-4">
+      <h2 class="text-2xl font-bold text-ink-950">Neden Bizi Tercih Etmelisiniz?</h2>
+      <div class="mt-6 grid gap-5 sm:grid-cols-2">
+        {
+          whyUs.map((item) => (
+            <div class="flex items-start gap-3">
+              <span class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-flame-500/15 text-flame-600">
+                <UiIcon name="check" class="h-4 w-4" />
+              </span>
+              <div>
+                <p class="font-semibold text-ink-950">{item.title}</p>
+                <p class="mt-1 text-sm text-ink-900/70">{item.text}</p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-4xl px-4 py-16">
+    <h2 class="text-2xl font-bold text-ink-950">Hizmetlerimiz</h2>
+    <div class="mt-6 grid gap-4 sm:grid-cols-2">
+      {
+        featuredServices.map((service) => (
+          <a
+            href={`/hizmetler/${service.slug}`}
+            class="flex items-start gap-3 rounded-xl border border-ink-950/10 bg-white p-5 transition hover:border-gold-500/60"
+          >
+            <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-ink-950 text-flame-400">
+              <Icon name={service.icon} class="h-5 w-5" />
+            </div>
+            <div>
+              <h3 class="font-semibold text-ink-950">{service.title}</h3>
+              <p class="mt-1 text-sm text-ink-900/70">{service.shortDescription}</p>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+
+    <p class="mt-10 leading-relaxed text-ink-900/80">
+      {business.name} olarak, siz değerli müşterilerimize en iyi hizmeti sunmak için sürekli çalışıyor ve kendimizi
+      geliştiriyoruz. Taşınma sürecinizi güvenilir ve profesyonel ellere emanet edin, rahat bir taşınma deneyimi
+      yaşayın.
+    </p>
+
+    <a
+      href="/teklif-al"
+      class="mt-8 inline-flex items-center gap-2 rounded-full bg-flame-500 px-8 py-3 font-semibold text-ink-950 transition hover:bg-flame-400"
+    >
+      Ücretsiz Keşif ve Teklif Al
+      <UiIcon name="arrow-right" class="h-4 w-4" />
+    </a>
+  </section>
+</BaseLayout>
