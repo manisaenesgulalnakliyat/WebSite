@@ -3,7 +3,7 @@ export const business = {
   legalName: 'Manisa Enes Gülal Nakliyat',
   phone: '0530 044 25 78',
   whatsappNumber: '905300442578',
-  email: 'info@manisaenesevdenevenakliyat.com',
+  email: 'info@manisaenesgulalnakliyat.com',
   address: {
     streetAddress: '75. Yıl, Vali Azizbey Cd. No:18/3',
     addressLocality: 'Yunusemre/Manisa',
