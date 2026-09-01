@@ -1,7 +1,6 @@
 ---
 import CityLayout from '../../layouts/CityLayout.astro';
 import CTAForm from '../../components/CTAForm.astro';
-import MapEmbed from '../../components/MapEmbed.astro';
 import Icon from '../../components/Icon.astro';
 import { cities } from '../../data/cities';
 import { services } from '../../data/services';
@@ -51,9 +50,6 @@ const { city } = Astro.props;
       }
     </div>
 
-    <div class="mt-10">
-      <MapEmbed heightClass="h-72" title={`${city.name} Hizmet Bölgesi Haritası`} />
-    </div>
   </section>
 
   <section class="bg-ivory-100 py-16">

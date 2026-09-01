@@ -5,7 +5,7 @@ const { reviews, rating, totalReviews } = await getGoogleReviews();
 ---
 
 {
-  reviews.length > 0 ? (
+  totalReviews > 1 && (
     <section class="space-y-4">
       <div class="flex items-center gap-2">
         <span class="text-lg font-semibold text-ink-950">Google Değerlendirmesi:</span>
@@ -29,9 +29,5 @@ const { reviews, rating, totalReviews } = await getGoogleReviews();
         ))}
       </div>
     </section>
-  ) : (
-    <p class="text-sm text-ink-900/70">
-      Google yorumları görüntülemek için .env dosyasına GOOGLE_PLACES_API_KEY ve GOOGLE_PLACE_ID ekleyin.
-    </p>
   )
 }
